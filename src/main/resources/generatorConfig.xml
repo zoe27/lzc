@@ -45,6 +45,7 @@
 		</javaClientGenerator>
 		
 		<table schema="" tableName="Userr" domainObjectName="User"/>
+		<table schema="" tableName="user" domainObjectName="UserAdmin"/>
 
 	</context>
 </generatorConfiguration>
