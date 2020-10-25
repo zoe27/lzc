@@ -22,4 +22,5 @@
     select id, addr, email, name, password, phone, username
     from user
   </select>
+  
 </mapper>
