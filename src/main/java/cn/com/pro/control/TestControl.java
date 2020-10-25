@@ -1,12 +1,11 @@
 package cn.com.pro.control;
 
 
-import cn.com.pro.mapper.UserrMapper;
-import cn.com.pro.vo.Userr;
+import cn.com.pro.mapper.UserMapper;
+import cn.com.pro.vo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
@@ -22,7 +21,7 @@ import java.util.List;
 public class TestControl {
 
 	@Autowired
-	UserrMapper userrMapper;
+	UserMapper userMapper;
 	
 
 	@RequestMapping("/test1")
@@ -34,8 +33,8 @@ public class TestControl {
 
 	@RequestMapping("/user")
 	@ResponseBody
-	public List<Userr> getUser(){
-		return userrMapper.selectAll();
+	public List<User> getUser(){
+		return userMapper.selectAll();
 	}
 
 	@RequestMapping("/test")
