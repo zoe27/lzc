@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.com.pro.mapper.OrderInfMapper" >
+  <resultMap id="BaseResultMap" type="cn.com.pro.vo.OrderInf" >
+    <id column="order_id" property="orderId" jdbcType="INTEGER" />
+    <result column="order_sn" property="orderSn" jdbcType="INTEGER" />
+    <result column="customer_id" property="customerId" jdbcType="INTEGER" />
+    <result column="shipping_comp_name" property="shippingCompName" jdbcType="VARCHAR" />
+    <result column="shipping_sn" property="shippingSn" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="shipping_time" property="shippingTime" jdbcType="TIMESTAMP" />
+    <result column="receive_time" property="receiveTime" jdbcType="TIMESTAMP" />
+    <result column="order_status" property="orderStatus" jdbcType="INTEGER" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from order_inf
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.com.pro.vo.OrderInf" >
+    insert into order_inf (order_id, order_sn, customer_id, 
+      shipping_comp_name, shipping_sn, create_time, 
+      shipping_time, receive_time, order_status
+      )
+    values (#{orderId,jdbcType=INTEGER}, #{orderSn,jdbcType=INTEGER}, #{customerId,jdbcType=INTEGER}, 
+      #{shippingCompName,jdbcType=VARCHAR}, #{shippingSn,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{shippingTime,jdbcType=TIMESTAMP}, #{receiveTime,jdbcType=TIMESTAMP}, #{orderStatus,jdbcType=INTEGER}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="cn.com.pro.vo.OrderInf" >
+    update order_inf
+    set order_sn = #{orderSn,jdbcType=INTEGER},
+      customer_id = #{customerId,jdbcType=INTEGER},
+      shipping_comp_name = #{shippingCompName,jdbcType=VARCHAR},
+      shipping_sn = #{shippingSn,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      shipping_time = #{shippingTime,jdbcType=TIMESTAMP},
+      receive_time = #{receiveTime,jdbcType=TIMESTAMP},
+      order_status = #{orderStatus,jdbcType=INTEGER}
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select order_id, order_sn, customer_id, shipping_comp_name, shipping_sn, create_time, 
+    shipping_time, receive_time, order_status
+    from order_inf
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select order_id, order_sn, customer_id, shipping_comp_name, shipping_sn, create_time, 
+    shipping_time, receive_time, order_status
+    from order_inf
+  </select>
+</mapper>

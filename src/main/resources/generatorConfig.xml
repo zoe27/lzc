@@ -17,8 +17,8 @@
 		</commentGenerator>
 		<!--数据库链接URL，用户名、密码 -->
 		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
-			connectionURL="jdbc:mysql://localhost:3306/t" userId="root"
-			password="123456">
+			connectionURL="jdbc:mysql://localhost:3306/ProjectPai" userId="root"
+			password="1234zxcv">
 		</jdbcConnection>
 		<javaTypeResolver>
 			<!-- This property is used to specify whether MyBatis Generator should 
@@ -44,8 +44,12 @@
 			<property name="enableSubPackages" value="true" />
 		</javaClientGenerator>
 		
-		<table schema="" tableName="Userr" domainObjectName="User"/>
-		<table schema="" tableName="user" domainObjectName="UserAdmin"/>
+		<table schema="" tableName="customer" domainObjectName="Customer"/>
+		<table schema="" tableName="customer_addr" domainObjectName="CustomerAddr"/>
+		<table schema="" tableName="customer_inf" domainObjectName="CustomerInf"/>
+		<table schema="" tableName="order_inf" domainObjectName="OrderInf"/>
+		<table schema="" tableName="product" domainObjectName="Product"/>
+		<table schema="" tableName="product_comment" domainObjectName="ProductComment"/>
 
 	</context>
 </generatorConfiguration>
