@@ -1,21 +1,24 @@
 package cn.com.pro.vo;
 
 import java.io.Serializable;
+import java.util.Date;
 
-public class User implements Serializable {
+public class Order implements Serializable {
     private Integer id;
 
     private String addr;
 
-    private String email;
-
     private String name;
 
-    private String password;
+    private Date orderTime;
 
     private String phone;
 
-    private String username;
+    private Integer state;
+
+    private Double total;
+
+    private Integer userId;
 
     private static final long serialVersionUID = 1L;
 
@@ -35,14 +38,6 @@ public class User implements Serializable {
         this.addr = addr == null ? null : addr.trim();
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email == null ? null : email.trim();
-    }
-
     public String getName() {
         return name;
     }
@@ -51,12 +46,12 @@ public class User implements Serializable {
         this.name = name == null ? null : name.trim();
     }
 
-    public String getPassword() {
-        return password;
+    public Date getOrderTime() {
+        return orderTime;
     }
 
-    public void setPassword(String password) {
-        this.password = password == null ? null : password.trim();
+    public void setOrderTime(Date orderTime) {
+        this.orderTime = orderTime;
     }
 
     public String getPhone() {
@@ -67,12 +62,28 @@ public class User implements Serializable {
         this.phone = phone == null ? null : phone.trim();
     }
 
-    public String getUsername() {
-        return username;
+    public Integer getState() {
+        return state;
     }
 
-    public void setUsername(String username) {
-        this.username = username == null ? null : username.trim();
+    public void setState(Integer state) {
+        this.state = state;
+    }
+
+    public Double getTotal() {
+        return total;
+    }
+
+    public void setTotal(Double total) {
+        this.total = total;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     @Override
@@ -86,14 +97,15 @@ public class User implements Serializable {
         if (getClass() != that.getClass()) {
             return false;
         }
-        User other = (User) that;
+        Order other = (Order) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
             && (this.getAddr() == null ? other.getAddr() == null : this.getAddr().equals(other.getAddr()))
-            && (this.getEmail() == null ? other.getEmail() == null : this.getEmail().equals(other.getEmail()))
             && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()))
-            && (this.getPassword() == null ? other.getPassword() == null : this.getPassword().equals(other.getPassword()))
+            && (this.getOrderTime() == null ? other.getOrderTime() == null : this.getOrderTime().equals(other.getOrderTime()))
             && (this.getPhone() == null ? other.getPhone() == null : this.getPhone().equals(other.getPhone()))
-            && (this.getUsername() == null ? other.getUsername() == null : this.getUsername().equals(other.getUsername()));
+            && (this.getState() == null ? other.getState() == null : this.getState().equals(other.getState()))
+            && (this.getTotal() == null ? other.getTotal() == null : this.getTotal().equals(other.getTotal()))
+            && (this.getUserId() == null ? other.getUserId() == null : this.getUserId().equals(other.getUserId()));
     }
 
     @Override
@@ -102,11 +114,12 @@ public class User implements Serializable {
         int result = 1;
         result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
         result = prime * result + ((getAddr() == null) ? 0 : getAddr().hashCode());
-        result = prime * result + ((getEmail() == null) ? 0 : getEmail().hashCode());
         result = prime * result + ((getName() == null) ? 0 : getName().hashCode());
-        result = prime * result + ((getPassword() == null) ? 0 : getPassword().hashCode());
+        result = prime * result + ((getOrderTime() == null) ? 0 : getOrderTime().hashCode());
         result = prime * result + ((getPhone() == null) ? 0 : getPhone().hashCode());
-        result = prime * result + ((getUsername() == null) ? 0 : getUsername().hashCode());
+        result = prime * result + ((getState() == null) ? 0 : getState().hashCode());
+        result = prime * result + ((getTotal() == null) ? 0 : getTotal().hashCode());
+        result = prime * result + ((getUserId() == null) ? 0 : getUserId().hashCode());
         return result;
     }
 
@@ -118,11 +131,12 @@ public class User implements Serializable {
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
         sb.append(", addr=").append(addr);
-        sb.append(", email=").append(email);
         sb.append(", name=").append(name);
-        sb.append(", password=").append(password);
+        sb.append(", orderTime=").append(orderTime);
         sb.append(", phone=").append(phone);
-        sb.append(", username=").append(username);
+        sb.append(", state=").append(state);
+        sb.append(", total=").append(total);
+        sb.append(", userId=").append(userId);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

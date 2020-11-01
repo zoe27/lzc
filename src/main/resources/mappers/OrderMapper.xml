@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.pro.mapper.OrderMapper">
+  <resultMap id="BaseResultMap" type="cn.com.pro.vo.Order">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="addr" jdbcType="VARCHAR" property="addr" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="order_time" jdbcType="TIMESTAMP" property="orderTime" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="state" jdbcType="INTEGER" property="state" />
+    <result column="total" jdbcType="DOUBLE" property="total" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+  </resultMap>
+  <insert id="insert" parameterType="cn.com.pro.vo.Order">
+    insert into order (id, addr, name, 
+      order_time, phone, state, 
+      total, user_id)
+    values (#{id,jdbcType=INTEGER}, #{addr,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{orderTime,jdbcType=TIMESTAMP}, #{phone,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER}, 
+      #{total,jdbcType=DOUBLE}, #{userId,jdbcType=INTEGER})
+  </insert>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, addr, name, order_time, phone, state, total, user_id
+    from order
+  </select>
+
+</mapper>

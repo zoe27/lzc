@@ -1,10 +1,6 @@
 package cn.com.pro.control;
 
 
-import cn.com.pro.mapper.UserAdminMapper;
-import cn.com.pro.mapper.UserMapper;
-import cn.com.pro.vo.User;
-import cn.com.pro.vo.UserAdmin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,11 +19,11 @@ import java.util.List;
 @Controller
 public class TestControl {
 
-	@Autowired
+	/*@Autowired
 	UserMapper userMapper;
 
 	@Autowired
-	UserAdminMapper userAdminMapper;
+	UserAdminMapper userAdminMapper;*/
 	
 
 	@RequestMapping("/test1")
@@ -37,12 +33,12 @@ public class TestControl {
 		return "hello world";
 	}
 
-	@RequestMapping("/user")
+	/*@RequestMapping("/user")
 	@ResponseBody
 	public List<User> getUser(){
 		return userMapper.selectAll();
 	}
-
+*/
 	@RequestMapping("/test")
 	public String testPage() {
 		//System.out.println(user.selectAll());
@@ -52,14 +48,14 @@ public class TestControl {
 	@RequestMapping("/batch")
 	@ResponseBody
 	public String batchInsert(){
-		for (int i = 0; i < 100000; i++){
+		/*for (int i = 0; i < 100000; i++){
 			UserAdmin userAdmin = new UserAdmin();
 			userAdmin.setAddr("beijing" + i);
 			userAdmin.setEmail("hello@126.ocom");
 			userAdmin.setPhone("15321111111" + i);
 			userAdmin.setUsername(String.valueOf(i));
 			userAdminMapper.insert(userAdmin);
-		}
+		}*/
 		return "OK";
 	}
 

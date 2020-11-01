@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.com.pro.mapper.ClassificationMapper" >
+  <resultMap id="BaseResultMap" type="cn.com.pro.vo.Classification" >
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="cname" property="cname" jdbcType="VARCHAR" />
+    <result column="parent_id" property="parentId" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="insert" parameterType="cn.com.pro.vo.Classification" >
+    insert into classification (id, cname, parent_id, 
+      type)
+    values (#{id,jdbcType=INTEGER}, #{cname,jdbcType=VARCHAR}, #{parentId,jdbcType=INTEGER}, 
+      #{type,jdbcType=INTEGER})
+  </insert>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, cname, parent_id, type
+    from classification
+  </select>
+</mapper>
