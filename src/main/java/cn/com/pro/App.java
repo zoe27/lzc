@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  * @Date: 2020-10-18 10:39
  */
 @SpringBootApplication
-@MapperScan("cn.com.pro.mapper")
+@MapperScan(basePackages = "cn.com.pro.mapper")
 public class App {
     public static void main( String[] args )
     {
