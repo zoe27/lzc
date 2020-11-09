@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -48,8 +49,14 @@ public class UserController {
 			throws IOException {
 		User user = userService.checkLogin(username, password);
 		if (user != null) {
-			response.sendRedirect("/index");
-			return "/index";
+            request.getSession().setAttribute("user", user);
+			//response.sendRedirect("/index");
+            Cookie loginCookie = new Cookie("token", user.getUsername());
+            loginCookie.setDomain("127.0.0.1");
+            loginCookie.setPath("/");
+            response.addCookie(loginCookie);
+            response.sendRedirect("/index");
+			return "index";
 		} else {
             return "/mall/user/register";
 

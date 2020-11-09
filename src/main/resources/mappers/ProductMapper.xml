@@ -27,36 +27,5 @@
     select id, csid, desc, image, is_hot, market_price, pdate, shop_price, title, content
     from product
   </select>
-  <resultMap id="BaseResultMap" type="cn.com.pro.vo.Product">
-    <id column="product_id" jdbcType="INTEGER" property="productId" />
-    <result column="product_name" jdbcType="VARCHAR" property="productName" />
-    <result column="price" jdbcType="DECIMAL" property="price" />
-    <result column="descript" jdbcType="VARCHAR" property="descript" />
-  </resultMap>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from product
-    where product_id = #{productId,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="cn.com.pro.vo.Product">
-    insert into product (product_id, product_name, price, 
-      descript)
-    values (#{productId,jdbcType=INTEGER}, #{productName,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, 
-      #{descript,jdbcType=VARCHAR})
-  </insert>
-  <update id="updateByPrimaryKey" parameterType="cn.com.pro.vo.Product">
-    update product
-    set product_name = #{productName,jdbcType=VARCHAR},
-      price = #{price,jdbcType=DECIMAL},
-      descript = #{descript,jdbcType=VARCHAR}
-    where product_id = #{productId,jdbcType=INTEGER}
-  </update>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select product_id, product_name, price, descript
-    from product
-    where product_id = #{productId,jdbcType=INTEGER}
-  </select>
-  <select id="selectAll" resultMap="BaseResultMap">
-    select product_id, product_name, price, descript
-    from product
-  </select>
+
 </mapper>

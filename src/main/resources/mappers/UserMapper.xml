@@ -23,6 +23,11 @@
     from user
   </select>
 
+  <select id="findByUsernameAndPassword" resultMap="BaseResultMap" >
+    select id, addr, email, name, password, phone, username
+    from user where  name = #{name,jdbcType=VARCHAR} and password = #{pass,jdbcType=VARCHAR}
+  </select>
+
 
 
 </mapper>
