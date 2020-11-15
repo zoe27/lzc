@@ -7,4 +7,6 @@ public interface ProductMapper {
     int insert(Product record);
 
     List<Product> selectAll();
+    //
+    void descPro();
 }

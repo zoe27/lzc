@@ -20,5 +20,7 @@ public interface UserService {
 
     User checkLogin(String username, String password);
 
+    void addOrder();
+
 
 }

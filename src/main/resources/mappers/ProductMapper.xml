@@ -27,6 +27,7 @@
     select id, csid, desc, image, is_hot, market_price, pdate, shop_price, title, content
     from product
   </select>
+<<<<<<< HEAD
 <!--  <resultMap id="BaseResultMap" type="cn.com.pro.vo.Product">-->
 <!--    <id column="product_id" jdbcType="INTEGER" property="productId" />-->
 <!--    <result column="product_name" jdbcType="VARCHAR" property="productName" />-->
@@ -59,4 +60,7 @@
     select product_id, product_name, price, descript
     from product
   </select>
+=======
+
+>>>>>>> 3581315ef2ac9611563082c937e199024c6db55a
 </mapper>

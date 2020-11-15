@@ -1,7 +1,8 @@
 package cn.com.pro.service;
 
+import cn.com.pro.mapper.OrderMapper;
+import cn.com.pro.mapper.ProductMapper;
 import cn.com.pro.mapper.UserMapper;
-import cn.com.pro.service.UserService;
 import cn.com.pro.vo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,12 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserMapper userMapper;
+
+    @Autowired
+    private ProductMapper productMapper;
+
+    @Autowired
+    private OrderMapper orderMapper;
 
     @Override
     public User findById(int id) {
@@ -61,4 +68,12 @@ public class UserServiceImpl implements UserService {
     public User checkLogin(String username, String password) {
         return userMapper.findByUsernameAndPassword(username, password);
     }
+
+    // add, updatexxx , deletexxx
+    @Override
+    public void addOrder() {
+        orderMapper.addOrder();
+        productMapper.descPro();
+    }
+
 }
