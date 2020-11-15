@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+
 @Service
 public class UserServiceImpl implements UserService {
     @Autowired
@@ -58,6 +59,6 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public User checkLogin(String username, String password) {
-        return null; //userMapper.findByUsernameAndPassword(username, password);
+        return userMapper.findByUsernameAndPassword(username, password);
     }
 }

@@ -22,6 +22,11 @@
     select id, addr, email, name, password, phone, username
     from user
   </select>
+  <select id="findByUsernameAndPassword" resultMap="cn.com.pro.vo.User">
+    select *
+    from user
+    where  username = #{name,jdbcType=VARCHAR} and password = #{pass,jdbcType=VARCHAR}
+  </select>
 
 
 

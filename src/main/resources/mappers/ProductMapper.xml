@@ -27,12 +27,12 @@
     select id, csid, desc, image, is_hot, market_price, pdate, shop_price, title, content
     from product
   </select>
-  <resultMap id="BaseResultMap" type="cn.com.pro.vo.Product">
-    <id column="product_id" jdbcType="INTEGER" property="productId" />
-    <result column="product_name" jdbcType="VARCHAR" property="productName" />
-    <result column="price" jdbcType="DECIMAL" property="price" />
-    <result column="descript" jdbcType="VARCHAR" property="descript" />
-  </resultMap>
+<!--  <resultMap id="BaseResultMap" type="cn.com.pro.vo.Product">-->
+<!--    <id column="product_id" jdbcType="INTEGER" property="productId" />-->
+<!--    <result column="product_name" jdbcType="VARCHAR" property="productName" />-->
+<!--    <result column="price" jdbcType="DECIMAL" property="price" />-->
+<!--    <result column="descript" jdbcType="VARCHAR" property="descript" />-->
+<!--  </resultMap>-->
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from product
     where product_id = #{productId,jdbcType=INTEGER}

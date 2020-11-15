@@ -7,4 +7,6 @@ public interface UserMapper {
     int insert(User record);
 
     List<User> selectAll();
+
+    User findByUsernameAndPassword(String username, String password);
 }
