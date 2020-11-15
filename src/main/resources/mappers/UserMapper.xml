@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.com.pro.mapper.UserMapper">
-  <resultMap id="BaseResultMap" type="cn.com.pro.vo.User">
-    <result column="id" jdbcType="INTEGER" property="id" />
-    <result column="addr" jdbcType="VARCHAR" property="addr" />
-    <result column="email" jdbcType="VARCHAR" property="email" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="password" jdbcType="VARCHAR" property="password" />
-    <result column="phone" jdbcType="VARCHAR" property="phone" />
-    <result column="username" jdbcType="VARCHAR" property="username" />
-  </resultMap>
-  <insert id="insert" parameterType="cn.com.pro.vo.User">
+    <resultMap id="BaseResultMap" type="cn.com.pro.vo.User">
+        <result column="id" jdbcType="INTEGER" property="id"/>
+        <result column="addr" jdbcType="VARCHAR" property="addr"/>
+        <result column="email" jdbcType="VARCHAR" property="email"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="phone" jdbcType="VARCHAR" property="phone"/>
+        <result column="username" jdbcType="VARCHAR" property="username"/>
+    </resultMap>
+    <insert id="insert" parameterType="cn.com.pro.vo.User">
     insert into user (id, addr, email, 
       name, password, phone, 
       username)
@@ -18,21 +18,13 @@
       #{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
       #{username,jdbcType=VARCHAR})
   </insert>
-  <select id="selectAll" resultMap="BaseResultMap">
+    <select id="selectAll" resultMap="BaseResultMap">
     select id, addr, email, name, password, phone, username
     from user
   </select>
-  <select id="findByUsernameAndPassword" resultMap="cn.com.pro.vo.User">
-    select *
-    from user
-    where  username = #{name,jdbcType=VARCHAR} and password = #{pass,jdbcType=VARCHAR}
-  </select>
 
-  <select id="findByUsernameAndPassword" resultMap="BaseResultMap" >
+    <select id="findByUsernameAndPassword" resultMap="BaseResultMap">
     select id, addr, email, name, password, phone, username
     from user where  name = #{name,jdbcType=VARCHAR} and password = #{pass,jdbcType=VARCHAR}
   </select>
-
-
-
 </mapper>

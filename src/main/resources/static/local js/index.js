@@ -612,7 +612,8 @@ function search(){
     var flag=0;
     key();
     var keyword = localStorage["value"];
-    $.get("product/new.do?pageSize=12&pageNo=0" , function (data) {
+    window.location.href = '/search.html';
+    /*$.get("/product/new.do?pageSize=12&pageNo=0" , function (data) {
         $(data.data).each(function (index, item) {
             if ((item.title.toUpperCase()).indexOf(keyword.toUpperCase())!=-1) {
                 flag=1;
@@ -624,7 +625,7 @@ function search(){
             alert("无此商品，请选择其他商品");
             window.location.href = '/search.html';
         }
-    });
+    });*/
 }
 
 function entersearch(event) {
