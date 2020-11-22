@@ -3,55 +3,45 @@ package cn.com.pro.service;
 
 import cn.com.pro.mapper.ProductMapper;
 import cn.com.pro.vo.Product;
+import com.alibaba.fastjson.JSON;
+import com.google.common.cache.*;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
 
 @Service
 public class ProductServiceImpl implements ProductService {
 	@Autowired
 	private ProductMapper productMapper;
-	// @Autowired
-	// private ClassificationDao classificationDao;
 
-	/*private static LoadingCache<Integer, Product> cache = CacheBuilder.newBuilder().maximumSize(1000)
-			.build(new CacheLoader<Integer, Product>() {
+	@Autowired
+	private JRedisService jRedisService;
+
+	private static LoadingCache<Integer, List<Product>> cache = CacheBuilder.newBuilder().maximumSize(1000)
+			.expireAfterAccess(1000, TimeUnit.SECONDS)
+			.removalListener(new RemovalListener<Object, Object>() {
 				@Override
-				public Product load(Integer key) throws Exception {
-					return null;
+				public void onRemoval(RemovalNotification<Object, Object> notification) {
+					System.out.println("");
+				}
+			})
+			.build(new CacheLoader<Integer, List<Product>>() {
+				@Override
+				public List<Product> load(Integer key)  {
+					return new ArrayList<Product>();
 				}
 			});
-*/
+
 	@Override
 	public Product findById(int id) {
-		/*try {
-			if(cache.get(id) != null) {
-				return cache.get(id);
-			}
-		} catch (ExecutionException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
 		return null;
-//		return productMapper.selectByPrimaryKey(id);
 	}
-
-	// @Override
-	// public Page<Product> findAll(Pageable pageable) {
-	// return productDao.findAll(pageable);
-	// }
-
-	/**
-	 * 查找热门商品
-	 *
-	 * @return
-	 */
-	// @Override
-	// public List<Product> findHotProduct() {
-	// return productDao.findByIsHot(1, null);
-	// }
 
 	/**
 	 * 查找最新商品
@@ -64,36 +54,33 @@ public class ProductServiceImpl implements ProductService {
 		// 查找两周内上架的商品
 		// Calendar calendar = Calendar.getInstance();
 		// calendar.add(Calendar.DAY_OF_MONTH, -14);
-		return productMapper.findNew(pageable);
+		Integer key = pageable.getPageNumber() + pageable.getPageSize();
+		List<Product> products = null;
+		try {
+			products = cache.get(key);
+			if (!products.isEmpty()){
+				System.out.println("get from cache");
+				return products;
+			}
+		} catch (ExecutionException e) {
+			e.printStackTrace();
+		}
+
+		String redisProduct = jRedisService.getClient().get(key.toString());
+		if (StringUtils.isNotBlank(redisProduct)){
+			List<Product> array = JSON.parseArray(redisProduct, Product.class);
+			products = array;
+			return products;
+		}
+
+		products = productMapper.findNew(pageable);
+		if (null != products){
+			cache.put(key, products);
+			jRedisService.getClient().set(key.toString(), JSON.toJSONString(products));
+		}
+		return products;
+
 	}
-
-	/**
-	 * 根据一级分类查找商品
-	 *
-	 * @param cid
-	 * @param pageable
-	 * @return
-	 */
-	// @Override
-	// public List<Product> findByCid(int cid, Pageable pageable) {
-	// //查找出所有二级分类
-	// List<Classification> sec = classificationDao.findByParentId(cid);
-	// List<Integer> secIds = new ArrayList<>();
-	// for (Classification classification : sec) {
-	// secIds.add(classification.getId());
-	// }
-	// return productDao.findByCsidIn(secIds,pageable);
-	// }
-
-	/**
-	 * 根据二级分类查找商品
-	 *
-	 * @return
-	 */
-	// @Override
-	// public List<Product> findByCsid(int csid, Pageable pageable) {
-	// return productDao.findByCsid(csid,pageable);
-	// }
 
 	@Override
 	public void update(Product product) {
@@ -107,7 +94,6 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public void delById(int id) {
-//		productMapper.deleteByPrimaryKey(id);
 	}
 
 	@Override

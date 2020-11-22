@@ -55,7 +55,6 @@ public class UserController {
             loginCookie.setDomain("127.0.0.1");
             loginCookie.setPath("/");
             response.addCookie(loginCookie);
-            //response.sendRedirect("/index");
 			return "/mall/index";
 		} else {
             return "/mall/user/register";

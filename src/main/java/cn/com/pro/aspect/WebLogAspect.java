@@ -27,7 +27,6 @@ public class WebLogAspect {
 
     ThreadLocal<Long> startTime = new ThreadLocal();
 
-//    @Pointcut("execution(public * cn.com.pro.control.*.*(..))")//切入点
     @Pointcut("execution(public * cn.com.pro.service.*.add*(..))")//切入点
     public void webLog() {
     }
@@ -47,8 +46,7 @@ public class WebLogAspect {
         LOGGER.info("IP : " + request.getRemoteAddr());
         LOGGER.info("CLASS_METHOD : " + joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName());
         LOGGER.info("ARGS : " + Arrays.toString(joinPoint.getArgs()));
-        // get db eneity
-        // start transaction
+
     }
 
     @AfterReturning(returning = "ret", pointcut = "webLog()")
@@ -58,7 +56,6 @@ public class WebLogAspect {
         LOGGER.info("SPEND TIME : " + (System.currentTimeMillis() - startTime.get()));
         LOGGER.info("***************End API Request***************");
 
-        // rollback
     }
 
 
