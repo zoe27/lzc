@@ -71,5 +71,17 @@ public class JRedisServiceImpl implements JRedisService {
         System.out.println(JRedisServiceImpl.getResource().set("1", "test"));
         System.out.println(JRedisServiceImpl.getResource().get("1"));
     }
+    
+    @Override
+	public void lpush(String key, Object value) {
+		// TODO Auto-generated method stub
+		getClient().lpush(key, value.toString());
+	}
+
+	@Override
+	public Object pop(String key) {
+		// TODO Auto-generated method stub
+		return getClient().rpop(key);
+	}
 
 }

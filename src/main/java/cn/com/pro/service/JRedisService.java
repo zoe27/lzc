@@ -14,4 +14,10 @@ import redis.clients.jedis.Jedis;
 public interface JRedisService {
 
     Jedis getClient();
+    
+    // push数据
+    void lpush(String key, Object value);
+    
+    // pop 数据
+    Object pop(String key);
 }

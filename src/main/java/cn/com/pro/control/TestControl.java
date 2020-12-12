@@ -1,10 +1,13 @@
 package cn.com.pro.control;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import cn.com.pro.service.JRedisService;
 
 
 /**
@@ -15,6 +18,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class TestControl {
+	
+	@Autowired
+	private JRedisService jRedisService;
 
 
     @RequestMapping("/test1")
@@ -44,4 +50,10 @@ public class TestControl {
         }
         return "redirect";
     }
+    
+    @RequestMapping("/sendMsg")
+	@ResponseBody
+	public void testMsg(@RequestParam(value="msg") String message) {
+		jRedisService.lpush("message", message);
+	}
 }
